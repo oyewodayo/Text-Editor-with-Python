@@ -28,7 +28,11 @@ def saveFile():
     f.close()
 
 def saveAs():
-    f = asksaveasfile(mode='w', defaultextension='.txt')
+    files = [('All Files', '*.*'),  
+             ('Python Files', '*.py'), 
+             ('Text Document', '*.txt'),
+             ('Ms Document', '*.docx')] 
+    f = asksaveasfile(mode='w', defaultextension=files)
     t = text.get(0.0, END)
     try:
         f.write(t.rstrip())
@@ -64,7 +68,7 @@ root.config(menu=my_menu)
 # Add File Menu
 file_menu = Menu(my_menu, tearoff=False)
 my_menu.add_cascade(label="File", menu=file_menu)
-file_menu.add_command(label="New" command=newFile)
+file_menu.add_command(label="New", command=newFile)
 file_menu.add_command(label="Open",command=openFile)
 file_menu.add_command(label="Save", command=saveFile)
 file_menu.add_command(label="Save As", command=saveAs)
